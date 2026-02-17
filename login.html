@@ -3,23 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>Login APK ZynCrash</title>
 
-<!-- Font menyeramkan -->
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Nosifer&display=swap" rel="stylesheet">
+<!-- FONT SEREM -->
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
 body {
     background:black;
     color:#cc00ff;
-    font-family:'Nosifer', cursive;
+    font-family:'Nosifer', cursive; /* teks biasa lebih seram */
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
 }
-
 .card{
     background: rgba(128,0,128,0.05);
     padding:30px 24px;
@@ -29,16 +28,15 @@ body {
     width:100%;
     max-width:400px;
 }
-
 h2{
-    font-family:'Nosifer', cursive;
-    color:#cc00ff;
-    text-shadow:0 0 12px #cc00ff;
+    font-family:'Creepster', cursive; /* judul lebih menyeramkan */
+    font-size:32px;
     margin-bottom:20px;
+    color:#ff4444;
+    text-shadow:0 0 15px red;
 }
-
 input{
-    width:70%; /* Lebar input lebih pendek */
+    width:70%;
     padding:12px;
     margin:10px 0;
     border-radius:10px;
@@ -46,35 +44,28 @@ input{
     background:#1a001a;
     color:#cc00ff;
     display:block;
-    margin-left:auto;
-    margin-right:auto;
-    font-family:'UnifrakturCook', cursive;
-    font-size:14px;
+    margin:auto;
+    font-family:'Nosifer', cursive;
 }
-
 button{
-    width:50%; /* Lebar tombol login */
+    width:50%;
     padding:12px;
     border:none;
     border-radius:10px;
     background:linear-gradient(135deg,#660066,#330033);
     color:#cc00ff;
     font-weight:bold;
-    font-family:'Nosifer', cursive;
     cursor:pointer;
     display:block;
-    margin-left:auto;
-    margin-right:auto;
+    margin:auto;
     margin-top:10px;
     transition:0.2s;
-    text-shadow:0 0 8px #cc00ff;
+    font-family:'Creepster', cursive; /* tombol lebih menyeramkan */
 }
-
 button:hover{
     transform:translateY(-2px);
     box-shadow:0 8px 16px rgba(200,20,255,0.4);
 }
-
 .buy-access{
     display:inline-block;
     margin-top:15px;
@@ -82,15 +73,13 @@ button:hover{
     font-size:14px;
     font-weight:bold;
     background:#990099;
-    color:#cc00ff;
+    color:white;
     border-radius:8px;
     text-decoration:none;
     box-shadow:0 0 12px rgba(200,50,255,0.4);
     transition:0.2s;
-    font-family:'Nosifer', cursive;
-    text-shadow:0 0 8px #cc00ff;
+    font-family:'Creepster', cursive;
 }
-
 .buy-access:hover{
     background:#660066;
     box-shadow:0 0 20px rgba(200,50,255,0.6);
@@ -106,34 +95,30 @@ button:hover{
     <button onclick="login()">Login</button>
 
     <a class="buy-access" href="https://t.me/Ranxyz_Official" target="_blank">
-        <i class="fas fa-coins"></i> Buy Akses
+        <i class="fas fa-coins"></i> Buy Access
     </a>
 </div>
 
 <script>
-async function login(){
+if(!localStorage.getItem("users")){
+    localStorage.setItem("users", JSON.stringify([{username:"admin", password:"admin123", role:"admin"}]));
+}
+
+function login(){
     const u = document.getElementById('username').value.trim();
     const p = document.getElementById('password').value.trim();
-
-    try{
-        // ambil data dari users.json
-        const res = await fetch('users.json');
-        const users = await res.json();
-
-        const found = users.find(user => user.username===u && user.password===p);
-        if(found){
-            localStorage.setItem("isLoggedIn","true");
-            localStorage.setItem("username", u);
-            window.location.href="dashboard.html";
-        } else {
-            alert("Username atau password salah!");
-        }
-    } catch(e){
-        alert("Gagal mengambil data users.json, pastikan dijalankan via server!");
-        console.error(e);
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const found = users.find(user => user.username===u && user.password===p);
+    if(found){
+        localStorage.setItem("isLoggedIn","true");
+        localStorage.setItem("currentUser", JSON.stringify(found));
+        window.location.href="dasboard.html";
+    } else {
+        alert("Username atau password salah!");
     }
 }
 </script>
 
 </body>
+</html>
 </html>

@@ -4,44 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
-<!-- Font menyeramkan -->
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Nosifer&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-body {
+body{
     background:black;
     color:#cc00ff;
-    font-family:'Nosifer', cursive; /* semua teks menggunakan Nosifer */
+    font-family:'Nosifer', cursive;
     margin:0;
     padding:0;
     display:flex;
     flex-direction:column;
     align-items:center;
 }
-
-/* JUDUL DASHBOARD */
 h1{
-    font-family:'Nosifer', cursive;
-    color:#cc00ff;
-    text-shadow:0 0 12px #cc00ff;
-    margin-top:20px;
+    font-family:'Creepster', cursive;
+    font-size:36px;
+    margin:25px 0;
+    color:#ff4444;
+    text-shadow:0 0 15px red;
 }
-
-/* VIDEO 16:9 SEJAJAR DENGAN TOMBOL */
 .video-container{
-    width:calc(160px * 3 + 25px * 2); /* lebar sesuai 3 tombol per baris + gap */
+    width:calc(160px*3 + 25px*2);
     max-width:1000px;
     margin-top:20px;
 }
 .video-container video{
     width:100%;
-    aspect-ratio:16/9; /* video otomatis 16:9 */
+    aspect-ratio:16/9;
     object-fit:cover;
     border-radius:15px;
     box-shadow:0 0 40px rgba(200,50,255,0.6);
 }
-
-/* TOMBOL FITUR BESAR */
 .features{
     display:flex;
     flex-wrap:wrap;
@@ -64,8 +58,7 @@ h1{
     box-shadow:0 0 25px rgba(200,50,255,0.5);
     transition:0.2s;
     cursor:pointer;
-    font-family:'Nosifer', cursive; /* font tombol */
-    text-shadow:0 0 8px #cc00ff;
+    font-family:'Creepster', cursive;
 }
 .feature-btn i{
     font-size:40px;
@@ -79,43 +72,22 @@ h1{
 </head>
 <body>
 
-<h1>ZYNCRASH</h1>
+<h1>DASHBOARD</h1>
 
-<!-- VIDEO 16:9 -->
 <div class="video-container">
     <video src="https://files.catbox.moe/hxgjq2.mp4" autoplay muted loop></video>
 </div>
 
-<!-- TOMBOL FITUR BESAR DI BAWAH VIDEO -->
 <div class="features">
-    <a href="panel-user.html" class="feature-btn">
-        <i class="fas fa-users-cog"></i>
-        User Panel
-    </a>
-    <a href="whatsapp.html" class="feature-btn">
-        <i class="fab fa-whatsapp"></i>
-        Bug WA
-    </a>
-    <a href="vps.html" class="feature-btn">
-        <i class="fas fa-server"></i>
-        VPS Hosting
-    </a>
-    <a href="apk.html" class="feature-btn">
-        <i class="fas fa-mobile-alt"></i>
-        APK Premium
-    </a>
-    <a href="profil.html" class="feature-btn">
-        <i class="fas fa-user"></i>
-        Profil
-    </a>
-    <a href="developer.html" class="feature-btn">
-        <i class="fas fa-code"></i>
-        Developer
-    </a>
+    <a href="panel-user.html" class="feature-btn"><i class="fas fa-users-cog"></i>User Panel</a>
+    <a href="whatsapp.html" class="feature-btn"><i class="fab fa-whatsapp"></i>Bug WhatsApp</a>
+    <a href="vps.html" class="feature-btn"><i class="fas fa-server"></i>VPS Hosting</a>
+    <a href="apk.html" class="feature-btn"><i class="fas fa-mobile-alt"></i>APK Premium</a>
+    <a href="profil.html" class="feature-btn"><i class="fas fa-user"></i>Profil</a>
+    <a href="developer.html" class="feature-btn"><i class="fas fa-code"></i>Developer</a>
 </div>
 
 <script>
-// cek login
 if(localStorage.getItem("isLoggedIn")!=="true"){
     window.location.href="login.html";
 }

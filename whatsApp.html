@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:radial-gradient(circle at center, #0d000d, #000000 70%);
+    font-family:'Nosifer', cursive;
+    color:#cc00ff;
+}
+
+.container{
+    width:90%;
+    max-width:400px;
+    background:rgba(50,0,50,0.95);
+    padding:35px 25px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(200,50,255,0.6);
+    text-align:center;
+}
+
+h2{
+    font-family:'Creepster', cursive;
+    font-size:28px;
+    color:#cc00ff;
+    margin-bottom:25px;
+    text-shadow:0 0 12px #cc00ff;
+}
+
+/* ===== CUSTOM DROPDOWN ===== */
+
+.dropdown{
+    position:relative;
+    width:100%;
+    margin-bottom:18px;
+}
+
+.dropdown-btn{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    background:#1a001a;
+    color:#cc00ff;
+    cursor:pointer;
+    box-shadow:0 0 12px rgba(200,50,255,0.3);
+    text-align:left;
+    font-family:'Nosifer', cursive;
+}
+
+.dropdown-content{
+    position:absolute;
+    width:100%;
+    background:#140014;
+    border-radius:14px;
+    margin-top:5px;
+    box-shadow:0 0 20px #cc00ff;
+    max-height:0;
+    overflow:hidden;
+    transition:0.3s ease;
+    z-index:10;
+}
+
+.dropdown-content.active{
+    max-height:200px;
+    overflow-y:auto;
+}
+
+.dropdown-content div{
+    padding:12px;
+    cursor:pointer;
+    color:#cc00ff;
+    font-family:'Nosifer', cursive;
+}
+
+.dropdown-content div:hover{
+    background:#330033;
+}
+
+/* INPUT */
+input{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    border:none;
+    outline:none;
+    background:#1a001a;
+    color:#cc00ff;
+    font-size:15px;
+    margin-bottom:18px;
+    font-family:'Nosifer', cursive;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(45deg,#660066,#cc00ff);
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    font-family:'Nosifer', cursive;
+    text-shadow:0 0 6px #cc00ff;
+    transition:0.2s;
+}
+
+button:hover{
+    box-shadow:0 0 25px #cc00ff;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Pilih Jenis Bug</h2>
+
+    <div class="dropdown">
+        <div class="dropdown-btn" onclick="toggleDropdown()" id="selected">
+            ☠ Pilih Jenis Bug
+        </div>
+
+        <div class="dropdown-content" id="dropdownList">
+            <div onclick="selectBug('FC Invisible')">☠ FC Invisible</div>
+            <div onclick="selectBug('Delay Crash')">💀 Delay Crash</div>
+            <div onclick="selectBug('Blank Chat')">👁 Blank Chat</div>
+            <div onclick="selectBug('Freeze UI')">🩸 Freeze UI</div>
+            <div onclick="selectBug('Dark Mode Error')">🔥 Dark Mode Error</div>
+            <div onclick="selectBug('Ghost Signal')">👻 Ghost Signal</div>
+        </div>
+    </div>
+
+    <input type="text" id="target" placeholder="Masukkan nomor target...">
+
+    <button onclick="kirim()">Kirim Sekarang</button>
+</div>
+
+<script>
+let selectedBug = "";
+
+function toggleDropdown(){
+    document.getElementById("dropdownList").classList.toggle("active");
+}
+
+function selectBug(value){
+    selectedBug = value;
+    document.getElementById("selected").innerText = "💀 " + value;
+    document.getElementById("dropdownList").classList.remove("active");
+}
+
+function kirim(){
+    let target = document.getElementById("target").value;
+
+    if(selectedBug === ""){
+        alert("Pilih jenis bug dulu!");
+        return;
+    }
+
+    if(target === ""){
+        alert("Nomor target wajib diisi!");
+        return;
+    }
+
+    let pesan = `Halo Admin
+Saya ingin menggunakan fitur:
+Jenis: ${selectedBug}
+Target: ${target}
+
+Mohon diproses.`;
+
+    let nomorAdmin = "6282178289756"; // Nomor WA kamu
+
+    let url = `https://wa.me/${nomorAdmin}?text=${encodeURIComponent(pesan)}`;
+
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Panel User</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Nosifer&display=swap" rel="stylesheet">
+
+<style>
+body{
+  background:black;
+  color:#cc00ff;
+  font-family:'Nosifer', cursive;
+  padding:30px;
+}
+
+.card{
+  background:rgba(50,0,50,0.95);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(200,50,255,0.6);
+}
+
+h2{
+  font-family:'UnifrakturCook', cursive;
+  color:#cc00ff;
+  text-align:center;
+  margin-bottom:20px;
+  text-shadow:0 0 10px #cc00ff;
+}
+
+input{
+  padding:10px;
+  margin:5px;
+  border-radius:8px;
+  border:none;
+  background:#1a001a;
+  color:#cc00ff;
+  box-shadow:0 0 8px rgba(200,50,255,0.3);
+  width:45%;
+}
+
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(135deg,#660066,#330033);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 15px #cc00ff;
+  font-family:'Nosifer', cursive;
+  transition:0.2s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 25px #cc00ff;
+}
+
+table{
+  width:100%;
+  margin-top:20px;
+  border-collapse:collapse;
+  font-family:'Nosifer', cursive;
+}
+
+th,td{
+  padding:10px;
+  border-bottom:1px solid #330033;
+  text-align:center;
+  color:#cc00ff;
+}
+
+th{
+  color:#ff4444;
+  text-shadow:0 0 8px #ff4444;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h2>Panel User</h2>
+
+<input type="text" id="newUser" placeholder="Username">
+<input type="password" id="newPass" placeholder="Password">
+<button onclick="addUser()">Add User</button>
+
+<table>
+<thead>
+<tr>
+<th>Username</th>
+<th>Role</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="userTable"></tbody>
+</table>
+
+<button onclick="back()">Kembali</button>
+</div>
+
+<script>
+let current = JSON.parse(localStorage.getItem("currentUser"));
+if(!current || current.role !== "admin"){
+  window.location.href="login.html";
+}
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+function showUsers(){
+  let table = document.getElementById("userTable");
+  table.innerHTML="";
+  users.forEach((u,index)=>{
+    table.innerHTML += `
+      <tr>
+        <td>${u.username}</td>
+        <td>${u.role}</td>
+        <td><button onclick="deleteUser(${index})">Delete</button></td>
+      </tr>
+    `;
+  });
+}
+
+function addUser(){
+  let username = document.getElementById("newUser").value.trim();
+  let password = document.getElementById("newPass").value.trim();
+
+  if(!username || !password) return alert("Isi semua!");
+
+  users.push({username:username,password:password,role:"user"});
+  localStorage.setItem("users",JSON.stringify(users));
+  showUsers();
+  alert(`User ${username} berhasil ditambahkan!`);
+  document.getElementById("newUser").value="";
+  document.getElementById("newPass").value="";
+}
+
+function deleteUser(index){
+  if(confirm(`Hapus user ${users[index].username}?`)){
+    users.splice(index,1);
+    localStorage.setItem("users",JSON.stringify(users));
+    showUsers();
+  }
+}
+
+function back(){
+  window.location.href="dasboard.html";
+}
+
+showUsers();
+</script>
+
+</body>
+</html>

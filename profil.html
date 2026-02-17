@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:radial-gradient(circle at center, #0d000d, #000000 70%);
+    font-family:'Nosifer', cursive; /* font neon menyeramkan */
+}
+
+.container{
+    width:90%;
+    max-width:400px;
+    background:rgba(50,0,50,0.95);
+    padding:35px 25px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(200,50,255,0.6);
+    text-align:center;
+}
+
+h2{
+    font-family:'Creepster', cursive;
+    font-size:28px;
+    color:#cc00ff;
+    margin-bottom:25px;
+    text-shadow:0 0 12px #cc00ff;
+}
+
+.profile-img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:linear-gradient(45deg,#660066,#cc00ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    color:white;
+    margin:0 auto 20px;
+    box-shadow:0 0 25px #cc00ff;
+}
+
+.info{
+    background:#1a001a;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:15px;
+    color:#cc99ff;
+    text-shadow:0 0 6px #cc00ff;
+}
+
+.role{
+    color:#cc00ff;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(45deg,#660066,#cc00ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    font-family:'Nosifer', cursive;
+    text-shadow:0 0 6px #cc00ff;
+}
+
+button:hover{
+    box-shadow:0 0 25px #cc00ff;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Profil User</h2>
+
+    <div class="profile-img" id="initial">
+        U
+    </div>
+
+    <div class="info">
+        Username:<br>
+        <span id="username"></span>
+    </div>
+
+    <div class="info">
+        Role:<br>
+        <span class="role" id="role"></span>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+    <button onclick="back()">Kembali</button>
+</div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("currentUser"));
+
+if(!user){
+    window.location.href="login.html";
+}else{
+    document.getElementById("username").innerText = user.username;
+    document.getElementById("role").innerText = user.role;
+    document.getElementById("initial").innerText = user.username.charAt(0).toUpperCase();
+}
+
+function logout(){
+    localStorage.removeItem("currentUser");
+    window.location.href="login.html";
+}
+
+function back(){
+    window.location.href="dasboard.html";
+}
+</script>
+
+</body>
+</html>

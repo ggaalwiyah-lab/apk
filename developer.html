@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Nosifer&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+body {
+    background:black;
+    color:#cc00ff;
+    font-family:'UnifrakturCook', cursive;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:0;
+    padding:0;
+}
+
+/* CARD KONTAK DEVELOPER */
+.card{
+    background: rgba(128,0,128,0.05);
+    padding:30px 24px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(200,50,255,0.5);
+    width:90%;
+    max-width:500px;
+    margin-top:40px;
+}
+
+.card h2{
+    font-family:'Nosifer', cursive;
+    font-size:28px;
+    margin-bottom:20px;
+    text-shadow:0 0 8px #cc00ff;
+}
+
+.contact-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:80%;
+    max-width:350px;
+    margin:10px auto;
+    padding:14px 20px;
+    background:linear-gradient(135deg,#660066,#330033);
+    color:#cc00ff;
+    font-weight:bold;
+    border-radius:12px;
+    text-decoration:none;
+    box-shadow:0 0 25px rgba(200,50,255,0.5);
+    transition:0.2s;
+}
+.contact-btn i{
+    font-size:24px;
+}
+.contact-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 40px rgba(200,50,255,0.8);
+}
+</style>
+</head>
+<body>
+
+<h1>Developer Info</h1>
+
+<div class="card">
+    <h2>Kontak Developer</h2>
+
+    <a href="https://wa.me/6282178289756" target="_blank" class="contact-btn">
+        <i class="fab fa-whatsapp"></i>
+        WhatsApp
+    </a>
+
+    <a href="https://t.me/Ranxyz_Official" target="_blank" class="contact-btn">
+        <i class="fab fa-telegram"></i>
+        Telegram
+    </a>
+
+    <a href="https://t.me/YourChannelHere" target="_blank" class="contact-btn">
+        <i class="fas fa-broadcast-tower"></i>
+        Saluran Telegram
+    </a>
+</div>
+
+<script>
+// Cek login sebelum masuk developer.html
+if(localStorage.getItem("isLoggedIn")!=="true"){
+    window.location.href="login.html";
+}
+</script>
+
+</body>
+</html>
